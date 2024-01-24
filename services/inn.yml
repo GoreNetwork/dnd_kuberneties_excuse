@@ -1,0 +1,28 @@
+names:
+  first:
+    - The Salughtered
+    - The Tasty
+    - The Picked
+    - The Hungry
+  second:
+    - Lamb
+    - Cow
+    - Hippogryph
+    - Eel
+services:
+  1 night:
+    - 1
+    - 100
+  coach cab:
+    - 1
+    - 2
+  hireling one day:
+    - 5
+    - 10
+  messenger:
+    - 5
+    - 10
+  stabling:
+    - 1
+    - 5
+  

@@ -1,0 +1,145 @@
+names:
+  first:
+    - Daily
+    - The Prized
+    - The bottemless
+    - Joe's
+    - Sweet
+    - Welcoming
+  second:
+    - Goods
+    - Gear
+    - Hoe
+    - Medow
+    - Aid
+
+common:
+  Abacus:  2 gp
+  Acid (vial):  25 gp
+  Alchemist's Fire (flask):  50 gp 
+  Arrows (20):  1 gp
+  Blowgun Needle (50):  1 gp
+  Crossbow Bolts (20):  1 gp
+  Sling Bullets (20):  4 cp
+  Crystal:  10 gp
+  Orb:  20 gp
+  Rod:  10 gp
+  Staff:  5 gp
+  Wand:  10 gp
+  Backpack:  2 gp
+  Ball Bearings (bag of 1000):  1 gp
+  Barrel:  2 gp
+  Basket:  4 sp
+  Bedroll:  1 gp
+  Bell:  1 gp
+  Blanket:  5 sp
+  Block and Tackle:  1 gp
+  Book:  25 gp
+  Bottle, Glass:  2 gp
+  Bucket:  5 cp
+  Caltrops (bag of 20):  1 gp
+  Candle:  1 cp
+  Case, Crossbow Bolt:  1 gp
+  Case, Map and Scroll:  1 gp
+  Chain (10ft):  5 gp
+  Chalk (1 piece):  1 cp
+  Chest:  5 gp
+  Climber's kit:  25 gp
+  Clothes, Common:  5 sp
+  Clothes, Costume:  5 gp
+  Clothes, Fine:  15 gp
+  Clothes, Traveler's:  2 gp
+  Component Pouch:  25 gp
+  Crowbar:  2 gp
+  Amulet :  5 gp
+  Emblem :   5 gp
+  Reliquary :  5 gp
+  Holy water (flask):  25 gp
+  Hourglass :  25 gp
+  Hunting Trap:  5 gp
+  Ink (1 ounce bottle):  10 gp
+  Ink pen:  2 cp
+  Jug or pitcher:  2 cp
+  Ladder (10-foot):  1 sp
+  Lamp:  5 sp
+  Lantern, Bullseye:  10 gp
+  Lantern, hooded:  5 gp
+  Lock:  10 gp
+  Magnifying glass:  100 gp
+  Manacles:  2 gp
+  Mess ki:  2 sp
+  Mirror, steel:  5 gp
+  Oil (flask):  1 sp
+  Paper (one sheet):  2 sp
+  Parchment (one sheet):  1 sp
+  Perfume (vial):  5 gp
+  Pick, miner's:  2 gp
+  Piton:  5 cp
+  Poison, basic (vial):  100 gp
+  Pole (10-foot):  5 cp
+  Pot, iron:  2 gp
+  Potion of healing:  50 gp
+  Pouch:  5 sp
+  Quiver:  1 gp
+  Ram, portable:  4 gp
+  Rations (l day):  5 sp
+  Robes:  1 gp
+  Rope, hempen (50 feet):  1 gp
+  Rope, silk (50 feet):  10 gp
+  Sack:  1 cp
+  Scale, merchant's:  5 gp
+  Sealing wax:  5 sp
+  Shovel:  2 gp
+  Signal whistle:  5 cp
+  Signe! ring:  5 gp
+  Soap:  2 cp
+  Spikes, iron (10):  1 gp
+  Spyglass:  1000 gp
+  Tent, two-person:  2 gp
+  Tinderbox:  5 sp
+  Torch:  1 cp
+  Vial:  1 gp
+  Waterskin:  2 sp
+  Whetstone:  1 cp
+  Brewer's supplies:  20 gp
+  Calligrapher's supplies:  10 gp
+  Painter's supplies:  10 gp
+  Cartographer's tools:  15 gp
+  Cobbler's tools:  5 gp
+  Cook's utensils:  1 gp
+  Glassblower's tools:  30 gp
+  Jeweler's tools:  25 gp
+  Leatherworker's tools:  5 gp
+  Mason's tools:  10 gp
+  Carpenter's tools:  8 gp
+  Potter's tools:  10 gp
+  Smith's tools:  20 gp
+  Weaver's tools:  1 gp
+  Navigator's tools:  25 gp
+  Woodcarver's tools:  1 gp
+  Herbalism kit:  5 gp
+  Disguise kit:  25 gp
+  Forgery kit:  15 gp
+  Dice set:  1 sp
+  Dragonchess set:  1 gp
+  Playing card set:  5 gp
+  Three-Dragon Ante set:  1 gp
+  Bagpipe:  30 gp
+  Drum:  6 gp
+  Dulcimer:  25 gp
+  Flute:  2 gp
+  Lute:  35 gp
+  Lyre:  30 gp
+  Horn:  3 gp
+  Pan Flute:  12 gp
+  Shawm:  2 gp
+  Viol:  30 gp  
+
+rare:
+  Viol:  30 gp 
+  Alchemist's supplies:  50 gp  
+  Tinker's tools:  50 gp
+  Spellbook:  50 gp
+  Bagpipe:  30 gp
+  Thieves' tools:  25 gp
+  Poisoner's kit:  50 gp

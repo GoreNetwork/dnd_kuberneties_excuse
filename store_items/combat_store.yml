@@ -1,0 +1,261 @@
+names:
+  first:
+    - slaughter
+    - conquoring
+  second:
+    - orcs
+    - trolls
+    - mantacores
+    - naga
+rare:
+  (+1) Weapon: 700 gp
+  (+2) Weapon: 2,000 gp
+  (+3) Weapon: 8,000 gp
+  (+1) Armor: 1,000 gp
+  (+2) Armor: 5,000 gp
+  (+3) Armor: 30,000 gp
+  (+1) Shield: 500 gp
+  (+2) Shield: 2,000 gp
+  (+3) Shield: 20,000 gp
+  Vicious Weapon: 1,000 gp
+  Sword of Life-Stealing: 1,000 gp
+  Sword of Sharpness: 1,200 gp
+  Scimitar of Speed: 5,000 gp
+  Dancing Sword: 5,000 gp
+  Sword of Wounding: 2,000 gp
+  Flame Tongue: 3,000 gp
+  Defender: 20,000 gp
+  Frost Brand: 2,000 gp
+  Nine Lives Stealer (Fully Charged): 7,000 gp
+  Sunblade: 5,000 gp
+  Dwarven Thrower: 6,000 gp
+  Hammer of Thunderbolts: 8,000 gp
+  Holy Avenger: 90,000 gp
+  Sword of Answering: 30,000 gp
+  Efreeti Chain: 50,000 gp
+  Javelin of Lightning: 150 gp
+  Dagger of Venom: 800 gp
+  Vorpal Sword: 20,000 gp
+  Weapon of Warning: 400 gp
+  Dragon Slayer: 2,000 gp
+  Oathbow: 4,500 gp
+  Giant Slayer: 1,200 gp
+  Mace of Smiting: 1,500 gp
+  Mace of Disruption: 3,000 gp
+  Mace of Terror: 2,000 gp
+  Ioun Stone Protection: 1,200 gp
+  Ioun Stone Reserve: 1,0500 gp
+  Ioun Stone Agility: 3,000 gp
+  Ioun Stone Fortitude: 3,000 gp
+  Ioun Stone Insight: 3,000 gp
+  Ioun Stone Intellect: 3,000 gp
+  Ioun Stone Leadership: 3,000 gp
+  Ioun Stone Strength: 3,000 gp
+  Ioun Stone Regeneration: 5,000 gp
+  Ioun Stone Awareness: 500 gp
+  Ioun Stone Mastery: 8,000 gp
+  Staff of Withering: 800 gp
+  Staff of Thunder and Lightning: 4,500 gp
+  Staff of the Adder: 200 gp
+  Staff of Striking: 10,000 gp
+  Staff of Fire: 15,000 gp
+  Staff of Swarming Insects: 2,000 gp
+  Staff of Charming: 550 gp
+  Staff of Healing: 3,000 gp
+  Staff of Frost: 20,000 gp
+  Staff of Power: 60,500 gp
+  Staff of the Woodlands: 2,000 gp
+  Wand of Enemy Detection: 3,000 gp
+  Wand of Magic Missiles: 1,500 gp
+  Wand of Web: 2,000 gp
+  Wand of Binding: 4,500 gp
+  Wand of Fear: 2,000 gp
+  Wand of Paralysis: 5,000 gp
+  Wand of Fireballs: 5,000 gp
+  Wand of Lightning Bolts: 3,500 gp
+  Wand of Polymorph: 20,000 gp
+  Wand of the War Mage +1: 700 gp
+  Wand of the War Mage +2: 2,000 gp
+  Wand of the War Mage +3: 8,000 gp
+  Tentacle Rod: 2,0500 gp
+  Rod of Lordly Might: 15,000 gp
+  Rod of Alertness: 5,000 gp
+  Rod of the Pact Keeper +1: 900 gp
+  Rod of the Pact Keeper +2: 3,500 gp
+  Rod of the Pact Keeper +3: 11,000 gp
+  Rod of Security: 20,000 gp
+  Armor of Resistance: Armor + 500gp
+  Adamantine Armor: Armor + 500 gp
+  Mithral Armor: Armor + 800 gp
+  Mariner's Armor: Armor + 200 gp
+  Plate Armor of Etherealness: 48,000 gp
+  Armor of Invulnerability: 50,000 gp
+  Glamoured Armor: 2,000 gp
+  Dragon Scale Mail: 4,000 gp
+  Dwarven Plate: 6,000 gp
+  Elven Chain: 2,000 gp
+  Mantle of Spell Resistance: 1,000 gp
+  Robe of Stars: 6,000 gp
+  Robe of Scintillating Colors: 4,000 gp
+  Robe of the Archmagi: 50,000 gp
+  Robe of Eyes: 2,500 gp
+  Helm of Teleportation: 40,000 gp
+  Animated Shield: 4,000 gp
+  Arrow-Catching Shield: 3,000 gp
+  Shield of Missile Attraction: 1,000 gp
+  Sentinel Shield: 800 gp
+  Spellguard Shield: 15,000 gp
+  Bracers of Archery: 500 gp
+  Periapt of Wound Closure: 900 gp
+  Boots of Speed: 800 gp
+  Iron Bands of Bilarro: 2,000 gp
+  Circlet of Blasting: 500 gp
+  Pipes of the Sewers: 200 gp
+  Rope of Entanglement: 600 gp
+  Luckstone: 500 gp
+  Saddle of the Cavalier: 150 gp
+  Wind Fan: 300 gp
+  Gloves of Missile Snaring: 450 gp
+  Cloak of Protection: 1,000 gp
+  Belt of Dwarvenkind: 3,000 gp
+  Belt of Hill Giant Strength: 5,000 gp
+  Belt of Stone Giant Strength: 10,000 gp
+  Belt of Frost Giant Strength: 10,000 gp
+  Belt of Fire Giant Strength: 25,000 gp
+  Belt of Cloud Giant Strength: 50,000 gp
+  Belt of Storm Giant Strength: Your Soul
+  Bracers of Defense: 4,000 gp
+  Pearl of Power: 500 gp
+  Pipes of Haunting: 600 gp
+  Brooch of Shielding: 500 gp
+  Amulet of Health: 3,000 gp
+  Gauntlets of Ogre Power: 1,000 gp
+  Headband of Intellect: 1,000 gp
+  Ring of Resistance: 1,000 gp
+  Ring of Protection: 2,000 gp
+  Ring of Evasion: 2,000 gp
+  Ring of Shooting Stars: 8,000 gp
+  Ring of Fire Elemental Command: 15,000 gp
+  Ring of Free Action: 2,000 gp
+  Ring of Water Elemental Command: 20,000 gp
+  Ring of Spell Storing: 3,000 gp
+  Ring of Spell Turning: 20,000 gp
+  Ring of the Ram: 1,500 gp
+  Ring of Feather Falling: 800 gp
+  Ring of Regeneration: 10,000 gp
+  Scarab of Protection: 30,000 gp
+  Cloak of Displacement: 8,000 gp
+  Prayer Bead - Bless: 200 gp
+  Prayer Bead - Smiting: 300 gp
+  Prayer Bead - Curing: 1,000 gp
+  Prayer Bead - Wind Walking: 1,200 gp
+  Prayer Bead - Greater Restoration: 2,500 gp
+  Prayer Bead - Summons: 5,000 gp
+  Instrument of the Bards - Cli Lyre: 2,500 gp
+  Instrument of the Bards - Fochulan Bandlore: 1,500 gp
+  Instrument of the Bards - Mac-Fuirmidh Cittern: 2,000 gp
+  Instrument of the Bards - Doss Lute: 1,500 gp
+  Instrument of the Bards - Canaith Mandolin: 2,500 gp
+  Instrument of the Bards - Anstruth Harp: 5,000 gp
+  Instrument of the Bards - Ollamh Harp: 70,000 gp
+  Luck Blade (Per Charge): 50,000 gp
+  Helm of Brilliance: 15,000 gp
+  Philter of Love: 90 gp
+  Potion of Fire Breath: 150 gp
+  Potion of Climbing: 180 gp
+  Potion of Heroism: 180 gp
+  Potion of Invisibility: 180 gp
+  Potion of Mind Reading: 180 gp
+  Potion of Water Breathing: 180 gp
+  Potion of Animal Friendship: 200 gp
+  Potion of Diminution: 270 gp
+  Potion of Growth: 270 gp
+  Potion of Gaseous Form: 300 gp
+  Potion of Resistance: 300 gp
+  Potion of Speed: 400 gp
+  Potion of Flying: 500 gp
+  Potion of Clairvoyance: 960 gp
+  Potion of Vitality: 960 gp
+  Potion of Invulnerability: 3,840 gp
+  Oil of Etherealness: 1,920 gp
+  Oil of Sharpness: 3,200 gp
+  Oil of Slipperiness: 480 gp
+  Potion of Longevity: 9,000 gp
+  Potion of Hill Giant Strength: 400 gp
+  Potion of Frost Giant Strength: 750 gp
+  Potion of Fire Giant Strength: 1,300 gp
+  Potion of Cloud Giant Strength: 1,990 gp
+  Potion of Storm Giant Strength: 3,000 gp
+  Assassin's blood: 150 gp
+  Truth serum: 150 gp
+  Carrion crawler mucus: 200 gp
+  Drow poison: 200 gp
+  Serpetn venom: 200 gp
+  Malice: 250 gp
+  Pale tincture: 250 gp
+  Essence of ether: 300 gp
+  Oil of taggit: 400 gp
+  Burnt othur fumes: 500 gp
+  Torpor: 600 gp
+  Wyvern poison: 1,200 gp
+  Midnight tears: 1,500 gp
+  Purple worm poison: 2,000 gp
+  Potion of Supreme Healing: 1,350 gp
+  Potion of Superior Healing: 450 gp 
+common:
+  Potion of Healing: 50 gp
+  Potion of Greater Healing: 150 gp
+  Antitoxin: 50 gp
+  Basic Poison: 100 gp
+  Elixir of Health: 120 gp
+  Potion of Poison: 100 gp
+  Padded Armor: 5 gp
+  Leather Armor: 10 gp
+  Studded Leather Armor: 45 gp
+  Hide Armor: 10 gp
+  Chain Shirt: 50 gp
+  Scail Mail: 50 gp
+  Breastplate: 400 gp
+  Half Plate: 750 gp
+  Ring Mail: 30 gp
+  Chain Mail: 75 gp
+  Splint Armor: 200 gp
+  Plate Armor: 1500 gp
+  Shields: 10 gp
+  Blowgun: 10 gp
+  Crossbow, hand: 75 gp
+  Crossbow, heavy: 50 gp
+  Longbow: 50 gp
+  Net: 1 gp
+  Battleaxe: 10 gp
+  Flail: 10 gp
+  Glaive: 20 gp
+  Greataxe: 30 gp
+  Greatsword: 50 gp
+  Halberd: 20 gp
+  Lance: 10 gp
+  Longsword: 15 gp
+  Maul: 10 gp
+  Morningstar: 15 gp
+  Pike: 5 gp
+  Rapier: 25 gp
+  Scimitar: 25 gp
+  Shortsword: 10 gp
+  Trident: 5 gp
+  War pick: 5 gp
+  Warhammer: 15 gp
+  Whip: 2 gp
+  Crossbow, light: 25 gp
+  Dart: 5 cp
+  Shortbow: 25 gp
+  Sling: 1 sp
+  Club: 1 sp
+  Dagger: 2 gp
+  Greatclub: 2 sp
+  Handaxe: 5 gp
+  Javelin: 5 sp
+  Light hammer: 2 gp
+  Mace: 5 gp
+  Quarterstaff: 2 sp
+  Sickle: 1 gp
+  Spear: 1 gp

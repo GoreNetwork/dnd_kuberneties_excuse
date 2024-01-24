@@ -1,0 +1,41 @@
+npc_motivations:
+  - motivation: Survival
+    description: Struggling against harsh living conditions, dangerous wildlife, or scarcity of resources.
+  - motivation: Wealth
+    description: Driven by the desire to accumulate gold, treasures, or valuable artifacts.
+  - motivation: Revenge
+    description: Seeking to avenge a wrong or harm done to them or a loved one.
+  - motivation: Power
+    description: Craving for authority, control over others, or magical prowess.
+  - motivation: Protection
+    description: Motivated by the need to defend a person, a group, or a location they hold dear.
+  - motivation: Curiosity
+    description: Driven by a desire to learn more, explore unknown territories, or uncover ancient secrets.
+  - motivation: Redemption
+    description: Attempting to make amends for past mistakes or crimes.
+  - motivation: Duty
+    description: Bound by a sense of obligation to a person, organization, or set of beliefs.
+  - motivation: Love or Passion
+    description: Acting out of love, whether it's romantic, familial, or platonic, or being driven by a passion for a particular craft or cause.
+  - motivation: Fear
+    description: Driven by the desire to avoid a perceived threat or danger.
+  - motivation: Honor
+    description: Upholding a personal or familial code, or the traditions of a culture or organization.
+  - motivation: Patriotism or Loyalty
+    description: Devoted to a leader, a homeland, or a set of ideals.
+  - motivation: Religion or Faith
+    description: Motivated by spiritual beliefs or in service to a deity or religious order.
+  - motivation: Justice
+    description: Seeking to right wrongs and bring fairness or lawfulness to a situation.
+  - motivation: Competition
+    description: Driven by the desire to be the best, whether it's in battle, in a trade, or in a sport.
+  - motivation: Adventure or Thrill-seeking
+    description: Craving for excitement, enjoying the rush of dangerous situations.
+  - motivation: Escape
+    description: Trying to leave behind a past life, a dangerous place, or a predetermined path.
+  - motivation: Intellectual or Artistic Pursuit
+    description: Engaged in the pursuit of knowledge, a scientific endeavor, or artistic creation.
+  - motivation: Legacy
+    description: Concerned with what they will leave behind, whether it's an heir, a body of work, or a changed world.
+  - motivation: Reconciliation
+    description: Seeking to mend a broken relationship or bring together opposing parties.

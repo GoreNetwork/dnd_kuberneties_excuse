@@ -1,0 +1,33 @@
+names:
+  first:
+    - The Magic 
+    - The Wounderous
+    - The Astounding
+  second:
+    - Lamp
+    - Amulet
+    - Staff
+    - Scroll
+services:
+  Spell Scroll Level 0:
+    - 140
+    - 340
+  Spell Scroll Level 1:
+    - 190
+    - 400
+  Spell Scroll Level 2:
+    - 1600
+    - 3200
+  Spell Scroll Level 3:
+    - 3600
+    - 7500
+  Spell Scroll Level 4:
+    - 20000
+    - 35000
+  Spell Scroll Level 5:
+    - 45000
+    - 63000
+  Teleportation:
+    - 5000
+    - 7000
+  

@@ -1,0 +1,246 @@
+race:
+  dwarf:
+    first_name:
+      male:
+        - Dain
+        - Balin
+        - Thorin
+        - Fili
+        - Kili
+        - Gimli
+        - Fundin
+        - Nori
+        - Dori
+        - Oin
+      female:
+        - Dís
+        - Mardred
+        - Thráin
+        - Kíliel
+        - Thorina
+        - Filiel
+        - Gimla
+        - Fundina
+        - Noreli
+        - Dorin
+    last_name:
+      - Ironfoot
+      - Stonehelm
+      - Bronzebeard
+      - Silveraxe
+      - Stronghammer
+      - Deepdelver
+      - Goldfinder
+      - Steelsmith
+      - Anvilbrow
+      - Hammerhand
+  elf:
+    first_name:
+      male:
+        - Legolas
+        - Thranduil
+        - Elrond
+        - Erestor
+        - Gildor
+        - Celeborn
+        - Glorfindel
+        - Haldir
+        - Elladan
+        - Elrohir
+      female:
+        - Arwen
+        - Galadriel
+        - Tauriel
+        - Lúthien
+        - Nimrodel
+        - Yavanna
+        - Eowyn
+        - Idrial
+        - Aredhel
+        - Anariel
+    last_name:
+      - Greenleaf
+      - Shadowmere
+      - Sunwhisper
+      - Starflower
+      - Moonsong
+      - Nightbreeze
+      - Silverfrond
+      - Dawnweaver
+      - Forestwalker
+      - Willowshade
+  halfling:
+    first_name:
+      male:
+        - Frodo
+        - Samwise
+        - Meriadoc
+        - Peregrin
+        - Bilbo
+        - Reginald
+        - Ferdinand
+        - Milo
+        - Doderic
+        - Wilibald
+      female:
+        - Rosie
+        - Belladonna
+        - Esmeralda
+        - Primula
+        - Lobelia
+        - Melilot
+        - Myrtle
+        - Amaranth
+        - Estella
+        - Ruby
+    last_name:
+      - Baggins
+      - Took
+      - Brandybuck
+      - Proudfoot
+      - Hornblower
+      - Bolger
+      - Burrows
+      - Chubb
+      - Greenhand
+      - Grubb
+  human:
+    first_name:
+      male:
+        - Aragorn
+        - Eddard
+        - Jaime
+        - Robert
+        - Jon
+        - Tywin
+        - Robb
+        - Jorah
+        - Gregor
+        - Sandor
+      female:
+        - Lyanna
+        - Cersei
+        - Daenerys
+        - Catelyn
+        - Sansa
+        - Arya
+        - Brienne
+        - Margaery
+        - Melisandre
+        - Ygritte
+    last_name:
+      - Stark
+      - Lannister
+      - Baratheon
+      - Targaryen
+      - Martell
+      - Tyrell
+      - Greyjoy
+      - Arryn
+      - Tully
+      - Frey
+  dragonborn:
+    first_name:
+      male:
+        - Nymmurh
+        - Rheagar
+        - Balasar
+        - Arjhan
+        - Bharash
+        - Ghesh
+        - Heskan
+        - Kriv
+        - Medrash
+        - Mehen
+      female:
+        - Heskan
+        - Surina
+        - Kava
+        - Akra
+        - Biri
+        - Daar
+        - Farideh
+        - Harann
+        - Flavilar
+        - Jheri
+    last_name:
+      - Clethtinthiallor
+      - Daardendrian
+      - Myastan
+      - Ophinshtalajiir
+      - Turnuroth
+      - Verthisathurgiesh
+      - Yarjerit
+      - Zivkovic
+      - Vorjyne
+      - Wivex
+  gnome:
+    first_name:
+      male:
+        - Ratchet
+        - Fizzlebang
+        - Millhouse
+        - Binwin
+        - Fenthwick
+        - Fibblestib
+        - Fonkin
+        - Gerbo
+        - Jebeddo
+        - Namfoodle
+      female:
+        - Tristana
+        - Lulu
+        - Poppy
+        - Bimpnottin
+        - Breena
+        - Caramip
+        - Duvamil
+        - Ellywick
+        - Ellyjobell
+        - Ellywick
+    last_name:
+      - Tinkertorque
+      - Steamwhistle
+      - Mekkatorque
+      - Nimblefingers
+      - Quickwrench
+      - Sharpwidget
+      - Tallfellow
+      - Underbough
+      - Warmwater
+      - Highhill
+  tiefling:
+    first_name:
+      male:
+        - Zariel
+        - Mephistopheles
+        - Bael
+        - Akmenos
+        - Amnon
+        - Barakas
+        - Damakos
+        - Ekemon
+        - Iados
+        - Kairon
+      female:
+        - Akta
+        - Bryseis
+        - Criella
+        - Damaia
+        - Ea
+        - Kallista
+        - Lerissa
+        - Makaria
+        - Nemeia
+        - Orianna
+    last_name:
+      - Thorne
+      - Nightwalker
+      - Shadowhorn
+      - Doomwhisper
+      - Darkweaver
+      - Fellspark
+      - Grimstride
+      - Hellwhisper
+      - Ironsoul
+      - Soulhorn
