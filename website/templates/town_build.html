@@ -1,0 +1,15 @@
+{% extends "base_page.html" %}
+
+{% block content %}
+    <h1>{{town_name}}</h1>
+    <div id="townData">
+        {% for key, yaml_data in town_data.items() %}
+            <button class="expand-btn" onclick="toggleExpand('{{ key }}')">{{ key }}</button>
+            <div id="{{ key }}" class="expanded-content" style="display: none; border: 1px solid #ccc; padding: 10px; margin: 10px; background-color: #f7f7f7;">
+                <pre>{{ yaml_data }}</pre>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
