@@ -4,7 +4,7 @@ import json
 
 def test_build_npc_endpoint():
     # Replace with the URL where your FastAPI app is running
-    base_url = "http://localhost:8000"
+    base_url = "http://localhost:7000"
     
     # Replace with the store_type you want to test
 

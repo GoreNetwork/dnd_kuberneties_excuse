@@ -1,0 +1,19 @@
+version: '3'
+services:
+  dnd_website:
+    image: dnd_website:latest
+    ports:
+      - "5000:5000"
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+
+
+
+  dnd_api:
+    image: dnd_api:latest
+    ports:
+      - "8000:8000"
+    build:
+      context: ./town_builder
+      dockerfile: Dockerfile

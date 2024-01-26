@@ -29,3 +29,6 @@ async def build_service_api_call(service_type: str):
         raise HTTPException(status_code=404, detail=f"Store type not found, please choose{service_types.keys()}")
     return  BuildServices(service_type).build_service()
 
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}

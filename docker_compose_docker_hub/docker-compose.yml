@@ -1,0 +1,13 @@
+version: '3'
+services:
+  dnd_website:
+    image:  dlots/dnd_website:1.0
+    container_name: dnd_kuberneties_excuse-dnd_website-1
+    ports:
+      - "5000:5000"
+   
+  dnd_api:
+    image: dlots/dnd_api:1.0
+    container_name: dnd_kuberneties_excuse-dnd_api-1
+    ports:
+      - "8000:8000"
