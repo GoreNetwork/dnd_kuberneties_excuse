@@ -36,12 +36,12 @@ jobs:
 
     - name: Build and push dnd_website image
       run: |
-        docker build -t dlots/dnd_website:${VERSION} -t dlots/dnd_website:latest -f website/Dockerfile .
+        docker build --platform linux/amd64,linux/arm64 -t dlots/dnd_website:${VERSION} -t dlots/dnd_website:latest -f website/Dockerfile .
         docker push dlots/dnd_website:${VERSION}
         docker push dlots/dnd_website:latest
 
     - name: Build and push dnd_api image
       run: |
-        docker build -t dlots/dnd_api:${VERSION} -t dlots/dnd_api:latest -f town_builder/Dockerfile .
+        docker build --platform linux/amd64,linux/arm64 -t dlots/dnd_api:${VERSION} -t dlots/dnd_api:latest -f town_builder/Dockerfile .
         docker push dlots/dnd_api:${VERSION}
         docker push dlots/dnd_api:latest

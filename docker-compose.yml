@@ -1,7 +1,7 @@
 version: '3'
 services:
   dnd_website:
-    image: dnd_website:latest
+    image: dlots/dnd_website:latest
     ports:
       - "5000:5000"
     build:
@@ -11,7 +11,7 @@ services:
 
 
   dnd_api:
-    image: dnd_api:latest
+    image: dlots/dnd_api:latest
     ports:
       - "8000:8000"
     build:
