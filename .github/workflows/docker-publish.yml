@@ -1,9 +1,13 @@
 name: Build and Push Docker Images
 
+# on:
+#   release:
+#     types:
+#       - published
 on:
-  release:
-    types:
-      - published
+    push:
+      branches:
+        - main
 
 jobs:
   build-and-push:
