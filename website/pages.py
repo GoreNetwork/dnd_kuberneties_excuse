@@ -20,7 +20,7 @@ def index():
 
 @app.route("/dnd")
 def dnd_page():
-    return "Dungeons and Dragons page, kube is not setup right I think"
+    index()
 
 
 @app.route("/test")
