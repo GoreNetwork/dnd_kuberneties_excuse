@@ -20,7 +20,7 @@ def index():
 
 @app.route("/dnd")
 def dnd_page():
-    index()
+    return index()
 
 
 @app.route("/test")
