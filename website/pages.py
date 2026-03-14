@@ -8,14 +8,30 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    yml_data = {}
     town_data = pull_new_town()
-    town_name = town_data["town_name"]
-    town_data["town_name"] = {"town_name": town_data["town_name"]}
+    town_name = town_data.pop("town_name")
+
+    npcs = {}
+    stores = {}
+    services = {}
+
     for key, value in town_data.items():
-        if key != "town_name":
-            yml_data[key] = yaml.dump({key: value}, default_flow_style=False)
-    return render_template("town_build.html", town_data=yml_data, town_name=town_name)
+        if key == "random_npc":
+            npcs[key] = value
+        elif isinstance(value, dict) and "first_name" in value:
+            npcs[key] = value
+        elif isinstance(value, dict) and "store_name" in value:
+            stores[key] = value
+        elif isinstance(value, dict) and "services" in value:
+            services[key] = value
+
+    return render_template(
+        "town_build.html",
+        town_name=town_name,
+        npcs=npcs,
+        stores=stores,
+        services=services,
+    )
 
 
 @app.route("/dnd")

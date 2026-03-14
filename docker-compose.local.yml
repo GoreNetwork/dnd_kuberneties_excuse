@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  dnd_api:
+    build:
+      context: .
+      dockerfile: town_builder/Dockerfile
+    container_name: dnd_kuberneties_excuse-dnd_api-1
+    ports:
+      - "8000:8000"
+
+  dnd_website:
+    build:
+      context: .
+      dockerfile: website/Dockerfile
+    container_name: dnd_kuberneties_excuse-dnd_website-1
+    ports:
+      - "5000:5000"
+    depends_on:
+      - dnd_api

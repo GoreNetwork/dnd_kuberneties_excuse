@@ -1,15 +1,191 @@
 {% extends "base_page.html" %}
 
 {% block content %}
-    <h1>{{town_name}}</h1>
-    <div id="townData">
-        {% for key, yaml_data in town_data.items() %}
-            <button class="expand-btn" onclick="toggleExpand('{{ key }}')">{{ key }}</button>
-            <div id="{{ key }}" class="expanded-content" style="display: none; border: 1px solid #ccc; padding: 10px; margin: 10px; background-color: #f7f7f7;">
-                <pre>{{ yaml_data }}</pre>
-            </div>
-        {% endfor %}
+<div class="container-lg px-3 px-md-4">
+
+    {# ── Town Header ── #}
+    <div class="town-header">
+        <h1>{{ town_name }}</h1>
+        <div class="subtitle">A procedurally generated D&amp;D settlement</div>
     </div>
 
-{% endblock %}
+    {# ── NPCs ── #}
+    {% if npcs %}
+    <section class="mb-5">
+        <h2 class="section-title">&#128101; Town Folk</h2>
+        <div class="row g-3">
 
+            {% for key, npc in npcs.items() %}
+
+                {% if key == 'random_npc' %}
+                    {# List of random NPCs #}
+                    {% for person in npc %}
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card card-npc h-100">
+                            <div class="card-header d-flex justify-content-between align-items-start">
+                                <strong>{{ person.first_name }} {{ person.last_name }}</strong>
+                                <span class="badge ms-2" style="background:#1a1d28;color:#6a6f88;font-size:0.7rem;white-space:nowrap">Townsfolk</span>
+                            </div>
+                            <div class="card-body py-2">
+                                <div class="mb-2">
+                                    <span class="badge badge-race me-1">{{ person.race }}</span>
+                                    <span class="badge badge-gender">{{ person.gender }}</span>
+                                </div>
+                                <div class="motivation">"{{ person.motivation }}"</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                {% else %}
+                    {# Named NPC (mayor, guard, etc.) #}
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card card-npc h-100">
+                            <div class="card-header d-flex justify-content-between align-items-start">
+                                <strong>{{ npc.first_name }} {{ npc.last_name }}</strong>
+                                <span class="badge ms-2" style="background:#1a1d28;color:#6a6f88;font-size:0.7rem;white-space:nowrap">
+                                    {{ key | replace('_', ' ') | title }}
+                                </span>
+                            </div>
+                            <div class="card-body py-2">
+                                <div class="mb-2">
+                                    <span class="badge badge-race me-1">{{ npc.race }}</span>
+                                    <span class="badge badge-gender">{{ npc.gender }}</span>
+                                </div>
+                                <div class="motivation">"{{ npc.motivation }}"</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {# ── Stores ── #}
+    {% if stores %}
+    <section class="mb-5">
+        <h2 class="section-title">&#127981; Shops &amp; Markets</h2>
+        <div class="row g-3">
+            {% for key, store in stores.items() %}
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-store h-100">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong>{{ store.store_name }}</strong>
+                            <span class="badge ms-2" style="background:#2a1e08;color:#c9a227;font-size:0.7rem;white-space:nowrap">
+                                {{ key | replace('_', ' ') | title }}
+                            </span>
+                        </div>
+                        {% if store.owner_data %}
+                        <div class="owner-line">
+                            Owner: {{ store.owner_data.name }}
+                            &nbsp;&middot;&nbsp;
+                            <span class="badge badge-race">{{ store.owner_data.race }}</span>
+                            <span class="badge badge-gender ms-1">{{ store.owner_data.gender }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body py-2">
+
+                        {% if store.owner_data and store.owner_data.motivation %}
+                        <div class="motivation mb-3">"{{ store.owner_data.motivation }}"</div>
+                        {% endif %}
+
+                        {% if store.rare_items %}
+                        <div class="section-label label-rare">&#10024; Rare Items</div>
+                        <table class="table table-sm table-dark price-table mb-3">
+                            <thead>
+                                <tr><th>Item</th><th class="text-end">Price</th></tr>
+                            </thead>
+                            <tbody>
+                                {% for item, price in store.rare_items.items() %}
+                                <tr>
+                                    <td>{{ item }}</td>
+                                    <td class="text-end price-gold">{{ price }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+
+                        {% if store.common_items %}
+                        <div class="section-label label-common">Common Stock</div>
+                        <div>
+                            {% if store.common_items is mapping %}
+                                {% for item, price in store.common_items.items() %}
+                                <span class="item-pill">{{ item }}: <span class="price-gold">{{ price }}</span></span>
+                                {% endfor %}
+                            {% else %}
+                                {% for item in store.common_items %}
+                                <span class="item-pill">{{ item }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {# ── Services ── #}
+    {% if services %}
+    <section class="mb-5">
+        <h2 class="section-title">&#127968; Services</h2>
+        <div class="row g-3">
+            {% for key, service in services.items() %}
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-service h-100">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong>{{ service.name }}</strong>
+                            <span class="badge ms-2" style="background:#0a2030;color:#2aaccc;font-size:0.7rem;white-space:nowrap">
+                                {{ key | replace('_', ' ') | title }}
+                            </span>
+                        </div>
+                        {% if service.owner_data %}
+                        <div class="owner-line">
+                            Owner: {{ service.owner_data.name }}
+                            &nbsp;&middot;&nbsp;
+                            <span class="badge badge-race">{{ service.owner_data.race }}</span>
+                            <span class="badge badge-gender ms-1">{{ service.owner_data.gender }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body py-2">
+
+                        {% if service.owner_data and service.owner_data.motivation %}
+                        <div class="motivation mb-3">"{{ service.owner_data.motivation }}"</div>
+                        {% endif %}
+
+                        {% if service.services %}
+                        <table class="table table-sm table-dark price-table">
+                            <thead>
+                                <tr><th>Service</th><th class="text-end">Price</th></tr>
+                            </thead>
+                            <tbody>
+                                {% for svc_name, price in service.services.items() %}
+                                <tr>
+                                    <td>{{ svc_name }}</td>
+                                    <td class="text-end price-gold">{{ price }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+</div>
+{% endblock %}
