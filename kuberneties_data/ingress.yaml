@@ -1,57 +1,155 @@
+# ============================================================
+# KUBERNETES + ISTIO MANIFEST FOR THE DND TOWN BUILDER APP
+# ============================================================
+# This single file defines EVERYTHING Kubernetes needs to run
+# the app. It contains multiple "documents" separated by ---
+# Each document describes one Kubernetes object.
+#
+# The objects defined here, in order:
+#   1. Namespace       - a logical bucket to group our resources
+#   2. Deployment      - runs the API backend (FastAPI)
+#   3. Service         - gives the API a stable internal address
+#   4. Deployment      - runs the Website frontend (Flask)
+#   5. Service         - gives the Website a stable internal address
+#   6. Gateway         - Istio's front door, accepts traffic from outside
+#   7. VirtualService  - Istio's router, decides where traffic goes
+#
+# Apply everything with:
+#   kubectl apply -f ingress.yaml
+# ============================================================
+
+
+# ============================================================
+# 1. NAMESPACE
+# ============================================================
+# A Namespace is like a folder inside your cluster. All of our
+# resources (deployments, services, etc.) live inside this
+# "dnd" namespace so they don't clash with other apps running
+# in the same cluster.
+#
+# The label "istio-injection: enabled" tells Istio to
+# automatically inject a sidecar proxy container into every
+# Pod created in this namespace. That sidecar is how Istio
+# intercepts and manages all network traffic between services
+# without you having to change any application code.
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dnd
+  name: dnd                       # Our namespace is called "dnd"
   labels:
-    istio-injection: enabled
+    istio-injection: enabled      # Auto-inject Istio sidecar into every Pod here
 ---
+
+
+# ============================================================
+# 2. DEPLOYMENT — API BACKEND (FastAPI / uvicorn)
+# ============================================================
+# A Deployment tells Kubernetes "keep N copies of this
+# container running at all times". If a container crashes,
+# Kubernetes automatically restarts it. If a node dies,
+# Kubernetes reschedules the Pod onto a healthy node.
+#
+# Think of a Deployment as the recipe; the running instances
+# it creates are called Pods.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dnd-api
-  namespace: dnd
+  name: dnd-api                   # Unique name for this Deployment object
+  namespace: dnd                  # Must be in our namespace
 spec:
+
+  # How many identical copies (Pods) to run simultaneously.
+  # Set this higher for redundancy / load spreading.
   replicas: 1
+
+  # The selector is how this Deployment finds and "owns" the
+  # Pods it creates. It matches Pods whose labels include
+  # app=dnd-api. This must match template.metadata.labels below.
   selector:
     matchLabels:
       app: dnd-api
+
+  # Template describes every Pod this Deployment creates.
   template:
     metadata:
       labels:
-        app: dnd-api
+        app: dnd-api              # Label stamped on every Pod; selector above matches this
+
     spec:
       containers:
-        - name: dnd-api
-          image: dlots/dnd_api:latest
-          imagePullPolicy: Always
+        - name: dnd-api           # Name of the container inside the Pod
+          image: dlots/dnd_api:latest   # Docker image to pull (from Docker Hub)
+          imagePullPolicy: Always # Always pull the latest version on every restart
+                                  # (use IfNotPresent in dev to save time)
           ports:
-            - containerPort: 8000
+            - containerPort: 8000 # The port the app listens on INSIDE the container
+
+          # ── Readiness Probe ──────────────────────────────────
+          # Kubernetes calls this endpoint to decide whether the
+          # Pod is ready to receive traffic. Until it returns 200,
+          # no requests are sent to this Pod.
+          # Use this to prevent traffic hitting a Pod that is still
+          # warming up (e.g. loading models, connecting to DB).
           readinessProbe:
             httpGet:
-              path: /
+              path: /             # GET / on the container
               port: 8000
-            initialDelaySeconds: 5
-            periodSeconds: 10
+            initialDelaySeconds: 5   # Wait 5s after start before first check
+            periodSeconds: 10        # Check every 10s after that
+
+          # ── Liveness Probe ───────────────────────────────────
+          # Kubernetes calls this to decide if the container is
+          # still alive and healthy. If it fails, Kubernetes kills
+          # and restarts the container automatically.
+          # Use this to recover from deadlocks or hung processes.
           livenessProbe:
             httpGet:
               path: /
               port: 8000
-            initialDelaySeconds: 15
-            periodSeconds: 20
+            initialDelaySeconds: 15  # Give the app more time before we check liveness
+            periodSeconds: 20        # Check every 20s
 ---
+
+
+# ============================================================
+# 3. SERVICE — API BACKEND
+# ============================================================
+# A Service gives your Pods a stable network address. Pods are
+# ephemeral: they come and go, and their IP addresses change.
+# A Service acts as a load balancer in front of them with a
+# fixed DNS name that never changes.
+#
+# Inside the cluster you can reach this service at:
+#   http://dnd-api-service.dnd.svc.cluster.local
+#   (format: <service-name>.<namespace>.svc.cluster.local)
+#
+# The Service type here is ClusterIP (the default), which means
+# it is only reachable INSIDE the cluster — not from the internet.
+# External traffic reaches it via the Istio Gateway + VirtualService.
 apiVersion: v1
 kind: Service
 metadata:
-  name: dnd-api-service
+  name: dnd-api-service           # DNS name other services use to reach the API
   namespace: dnd
 spec:
+  # The Service forwards traffic to Pods whose labels match this.
+  # This must match the labels on the API Deployment's Pods above.
   selector:
     app: dnd-api
+
   ports:
     - name: http
-      port: 80
-      targetPort: 8000
+      port: 80          # Port the Service listens on (what callers use)
+      targetPort: 8000  # Port on the Pod the Service forwards to
+                        # So callers use :80 → container gets :8000
 ---
+
+
+# ============================================================
+# 4. DEPLOYMENT — WEBSITE FRONTEND (Flask)
+# ============================================================
+# Same structure as the API Deployment above, but runs the
+# Flask website container instead.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -72,16 +170,27 @@ spec:
           image: dlots/dnd_website:latest
           imagePullPolicy: Always
           env:
+            # Environment variables are injected into the container at runtime.
+            # The Flask app reads API_URL to know where to send API calls.
+            # Using the Kubernetes DNS name here means the website finds the
+            # API Service regardless of which node or IP it lands on.
             - name: API_URL
               value: "http://dnd-api-service.dnd.svc.cluster.local"
+
           ports:
-            - containerPort: 5000
+            - containerPort: 5000   # Flask listens on port 5000
+
+          # The website depends on the API being up first (it calls it on load),
+          # so the readiness probe checks /dnd (the main page) rather than /.
+          # This probe will fail if the API isn't responding yet, which keeps
+          # the website Pod out of rotation until it can actually serve pages.
           readinessProbe:
             httpGet:
               path: /dnd
               port: 5000
-            initialDelaySeconds: 10
+            initialDelaySeconds: 10  # Website needs a bit longer — waits for API too
             periodSeconds: 10
+
           livenessProbe:
             httpGet:
               path: /dnd
@@ -89,6 +198,13 @@ spec:
             initialDelaySeconds: 20
             periodSeconds: 20
 ---
+
+
+# ============================================================
+# 5. SERVICE — WEBSITE FRONTEND
+# ============================================================
+# Same idea as the API Service: gives the website Pods a stable
+# internal DNS name so Istio can route traffic to them.
 apiVersion: v1
 kind: Service
 metadata:
@@ -96,28 +212,69 @@ metadata:
   namespace: dnd
 spec:
   selector:
-    app: dnd-website
+    app: dnd-website              # Routes to Pods labelled app=dnd-website
   ports:
     - name: http
-      port: 80
-      targetPort: 5000
+      port: 80                    # Callers use port 80
+      targetPort: 5000            # Forwards to Flask on port 5000
 ---
+
+
+# ============================================================
+# 6. ISTIO GATEWAY
+# ============================================================
+# An Istio Gateway is the front door of your cluster for
+# external HTTP/HTTPS traffic. Think of it as the physical
+# router sitting at the edge of your network.
+#
+# It runs as a Pod called "istio-ingressgateway" (already
+# installed when you install Istio). This Gateway object just
+# configures WHAT that pod should accept.
+#
+# Without a Gateway, no traffic from outside the cluster can
+# reach your services at all, even if Services exist.
+#
+# The VirtualService below (object 7) then decides WHERE
+# traffic that enters through this Gateway gets sent.
 apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
   name: dnd-gateway
   namespace: dnd
 spec:
+  # selector tells Istio which ingress gateway pod this config applies to.
+  # "istio: ingressgateway" is the default label on the standard Istio
+  # ingress gateway — you're hooking into the pre-existing gateway pod.
   selector:
     istio: ingressgateway
+
   servers:
     - port:
-        number: 80
+        number: 80      # Accept traffic on port 80 (plain HTTP)
         name: http
         protocol: HTTP
       hosts:
-        - "*"
+        - "*"           # Accept requests for ANY hostname / IP address.
+                        # In production you'd replace "*" with your actual
+                        # domain, e.g. "dnd.example.com"
 ---
+
+
+# ============================================================
+# 7. ISTIO VIRTUALSERVICE
+# ============================================================
+# A VirtualService is Istio's routing table. It reads the
+# incoming request (URL path, headers, etc.) and decides which
+# Service to send it to.
+#
+# Think of it like an Nginx or Traefik routing config, but
+# managed by Kubernetes objects instead of config files.
+#
+# Traffic flow end to end:
+#   Browser → Istio IngressGateway Pod (Gateway object above)
+#           → VirtualService routing rules (this object)
+#           → Service (ClusterIP)
+#           → Pod (your app container)
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
@@ -125,25 +282,51 @@ metadata:
   namespace: dnd
 spec:
   hosts:
-    - "*"
+    - "*"               # Handle requests for any hostname (matches the Gateway)
+
   gateways:
-    - dnd-gateway
+    - dnd-gateway       # Only apply these rules to traffic coming through our Gateway.
+                        # (Istio also has an implicit "mesh" gateway for internal
+                        # service-to-service traffic — listing our gateway here means
+                        # these rules apply to external traffic only.)
+
+  # http is a list of routing rules, checked top to bottom.
+  # The FIRST rule that matches wins.
   http:
+
+    # ── Rule 1: API traffic ──────────────────────────────────
+    # Matches any request whose URL starts with /dnd_api
+    # e.g. http://<cluster-ip>/dnd_api/build_town
     - match:
         - uri:
-            prefix: /dnd_api
+            prefix: /dnd_api      # Match URLs starting with /dnd_api
+
+      # rewrite strips the /dnd_api prefix before forwarding.
+      # The API container doesn't know about /dnd_api — its routes
+      # start at /. Without this rewrite, requests would arrive as
+      # /dnd_api/build_town and the API would return 404.
       rewrite:
-        uri: /
+        uri: /                    # Replace the matched prefix with /
+
       route:
         - destination:
-            host: dnd-api-service.dnd.svc.cluster.local
+            host: dnd-api-service.dnd.svc.cluster.local  # Send to the API Service
             port:
               number: 80
+
+    # ── Rule 2: Website traffic ──────────────────────────────
+    # Matches any request whose URL starts with /dnd
+    # e.g. http://<cluster-ip>/dnd
+    # This rule is listed AFTER the /dnd_api rule because Istio
+    # checks rules in order — /dnd would also match /dnd_api
+    # if it came first (since /dnd_api starts with /dnd).
     - match:
         - uri:
-            prefix: /dnd
+            prefix: /dnd          # Match URLs starting with /dnd
+
       route:
         - destination:
-            host: dnd-website-service.dnd.svc.cluster.local
+            host: dnd-website-service.dnd.svc.cluster.local  # Send to the Website Service
             port:
               number: 80
+            # No rewrite here — Flask is configured to handle /dnd paths directly.
