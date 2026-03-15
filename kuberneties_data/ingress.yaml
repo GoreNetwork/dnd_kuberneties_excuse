@@ -1,26 +1,149 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: v1
+kind: Namespace
 metadata:
-  name: dnd-ingress
+  name: dnd
+  labels:
+    istio-injection: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnd-api
   namespace: dnd
-  annotations:
-    traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: traefik
-  rules:
-    - http:
-        paths:
-          - path: /dnd
-            pathType: Prefix
-            backend:
-              service:
-                name: dnd-website-service
-                port:
-                  number: 80
-          - path: /dnd_api
-            pathType: Prefix
-            backend:
-              service:
-                name: dnd-api-service
-                port:
-                  number: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dnd-api
+  template:
+    metadata:
+      labels:
+        app: dnd-api
+    spec:
+      containers:
+        - name: dnd-api
+          image: dlots/dnd_api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dnd-api-service
+  namespace: dnd
+spec:
+  selector:
+    app: dnd-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnd-website
+  namespace: dnd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dnd-website
+  template:
+    metadata:
+      labels:
+        app: dnd-website
+    spec:
+      containers:
+        - name: dnd-website
+          image: dlots/dnd_website:latest
+          imagePullPolicy: Always
+          env:
+            - name: API_URL
+              value: "http://dnd-api-service.dnd.svc.cluster.local"
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /dnd
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /dnd
+              port: 5000
+            initialDelaySeconds: 20
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dnd-website-service
+  namespace: dnd
+spec:
+  selector:
+    app: dnd-website
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5000
+---
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: dnd-gateway
+  namespace: dnd
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: dnd-virtualservice
+  namespace: dnd
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - dnd-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /dnd_api
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: dnd-api-service.dnd.svc.cluster.local
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /dnd
+      route:
+        - destination:
+            host: dnd-website-service.dnd.svc.cluster.local
+            port:
+              number: 80
