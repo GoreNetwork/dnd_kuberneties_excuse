@@ -145,6 +145,18 @@
             color: var(--text-muted-custom);
             margin-top: 2px;
         }
+
+        /* Collapse controls */
+        .section-title { cursor: pointer; user-select: none; }
+        .section-title:hover .collapse-chevron { color: var(--gold-light); }
+        .card-header[data-bs-toggle="collapse"] { cursor: pointer; user-select: none; }
+        .card-header[data-bs-toggle="collapse"]:hover .collapse-chevron { color: var(--gold-light); }
+        .collapse-chevron {
+            color: var(--text-muted-custom);
+            transition: transform 0.2s ease, color 0.2s;
+            display: inline-block;
+            line-height: 1;
+        }
     </style>
 </head>
 <body>
